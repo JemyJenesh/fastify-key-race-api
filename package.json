@@ -22,7 +22,9 @@
   "dependencies": {
     "axios": "^0.27.2",
     "fastify": "4.3.0",
-    "mongoose": "^6.4.7"
+    "fastify-socket.io": "^4.0.0",
+    "mongoose": "^6.4.7",
+    "socket.io": "^4.5.1"
   },
   "devDependencies": {
     "nodemon": "2.0.19"
