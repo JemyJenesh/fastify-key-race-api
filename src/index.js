@@ -1,6 +1,7 @@
 import Fastify from "fastify";
-import playerRoutes from "./players/routes.js";
 import { connectDatabase } from "./utils/db.js";
+import gamesRoutes from "./games/routes.js";
+import playerRoutes from "./players/routes.js";
 
 export const fastify = Fastify({
   logger: true,
@@ -12,6 +13,7 @@ fastify.get("/", (request, reply) => {
   reply.send({ App: "Key Race", By: "Jenesh", Version: "1.0.0" });
 });
 
+fastify.register(gamesRoutes, { prefix: "/api/games" });
 fastify.register(playerRoutes, { prefix: "/api/players" });
 
 const start = async () => {
