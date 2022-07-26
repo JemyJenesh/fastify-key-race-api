@@ -1,12 +1,18 @@
 import Fastify from "fastify";
+import playerRoutes from "./players/routes.js";
+import { connectDatabase } from "./utils/db.js";
 
-const fastify = Fastify({
+export const fastify = Fastify({
   logger: true,
 });
 
+connectDatabase();
+
 fastify.get("/", (request, reply) => {
-  reply.send({ hello: "world" });
+  reply.send({ App: "Key Race", By: "Jenesh", Version: "1.0.0" });
 });
+
+fastify.register(playerRoutes, { prefix: "/api/players" });
 
 const start = async () => {
   try {
