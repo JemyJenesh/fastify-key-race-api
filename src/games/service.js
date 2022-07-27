@@ -10,12 +10,24 @@ const create = async (playerId) => {
     throw "No player found";
   }
 
+  await playersService.update(player._id, {
+    speed: 0,
+    wordIndex: 0,
+    accuracy: 0,
+  });
+
+  await destoryByPlayerId(player._id);
+
   return await Game.create({
     words,
     createdBy: playerId,
     players: [player],
     startedAt: new Date().getTime(),
   });
+};
+
+const destoryByPlayerId = async (createdBy) => {
+  return await Game.deleteOne({ createdBy });
 };
 
 const get = async (id) => {
@@ -29,10 +41,22 @@ const update = async (id, { hasStarted, isOver, player }) => {
     throw "No game found";
   }
 
-  const existingPlayer = await playersService.get(player._id);
+  let existingPlayer;
+  if (player) {
+    existingPlayer = await playersService.get(player._id);
 
-  if (!existingPlayer) {
-    throw "No player found";
+    existingPlayer.speed = 0;
+    existingPlayer.wordIndex = 0;
+    existingPlayer.accuracy = 0;
+    await existingPlayer.save();
+
+    player.speed = existingPlayer.speed;
+    player.wordIndex = existingPlayer.wordIndex;
+    player.accuracy = existingPlayer.accuracy;
+
+    if (!existingPlayer) {
+      throw "No player found";
+    }
   }
 
   if (game.hasStarted || game.isOver) {
