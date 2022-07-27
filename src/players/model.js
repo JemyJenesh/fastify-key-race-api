@@ -8,7 +8,7 @@ export const playerSchema = new Schema({
     default: 0,
     type: Number,
   },
-  wordIndex: {
+  characterIndex: {
     default: 0,
     type: Number,
   },

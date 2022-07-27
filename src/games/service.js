@@ -23,6 +23,22 @@ const get = async (id) => {
 };
 
 const update = async (id, { hasStarted, isOver, player }) => {
+  const game = await get(id);
+
+  if (!game) {
+    throw "No game found";
+  }
+
+  const existingPlayer = await playersService.get(player._id);
+
+  if (!existingPlayer) {
+    throw "No player found";
+  }
+
+  if (game.hasStarted || game.isOver) {
+    throw "Game closed for new players!";
+  }
+
   await Game.findByIdAndUpdate(id, {
     hasStarted,
     isOver,

@@ -18,7 +18,7 @@ const gameSchema = new Schema({
   },
   players: [playerSchema],
   startedAt: Number,
-  words: [String],
+  words: String,
 });
 
 const Game = model("Game", gameSchema);
