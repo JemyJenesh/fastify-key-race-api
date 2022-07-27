@@ -5,7 +5,7 @@ const { model, Schema } = mongoose;
 export const playerSchema = new Schema({
   name: String,
   speed: {
-    default: -1,
+    default: 0,
     type: Number,
   },
   wordIndex: {

@@ -18,11 +18,11 @@ const update = async (id, updates) => {
   return await get(id);
 };
 
-const playerService = {
+const playersService = {
   create,
   get,
   getAll,
   update,
 };
 
-export default playerService;
+export default playersService;
