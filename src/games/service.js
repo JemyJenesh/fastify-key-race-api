@@ -1,10 +1,14 @@
 import Game from "./model.js";
-import Player from "../players/model.js";
+import playersService from "../players/service.js";
 import { getData } from "../utils/quotable.js";
 
 const create = async (playerId) => {
   const words = await getData();
-  const player = await Player.findById(playerId);
+  const player = await playersService.get(playerId);
+
+  if (!player) {
+    throw "No player found";
+  }
 
   return await Game.create({
     words,

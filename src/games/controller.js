@@ -16,8 +16,6 @@ const get = async (req, reply) => {
     const { id } = req.params;
     const game = await gamesService.get(id);
 
-    console.log(game);
-
     if (!game) {
       return reply.code(404).send();
     }
