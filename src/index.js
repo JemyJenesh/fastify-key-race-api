@@ -61,7 +61,7 @@ fastify.ready((error) => {
             let endTime = new Date().getTime();
             let { startedAt } = game;
 
-            player.speed = calculateGrossWPM(endTime, startedAt, player);
+            player.speed = calculateGrossWPM(startedAt, endTime, game, player);
             game = await game.save();
 
             fastify.io.to(gameId).emit("gameUpdated", game);
@@ -69,7 +69,7 @@ fastify.ready((error) => {
             let endTime = new Date().getTime();
             let { startedAt } = game;
 
-            player.speed = calculateGrossWPM(endTime, startedAt, player);
+            player.speed = calculateGrossWPM(startedAt, endTime, game, player);
             game = await game.save();
 
             // socket.emit("gameFinished");

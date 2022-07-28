@@ -12,6 +12,10 @@ export const playerSchema = new Schema({
     default: 0,
     type: Number,
   },
+  errorCount: {
+    default: 0,
+    type: Number,
+  },
   accuracy: {
     default: 0,
     type: Number,

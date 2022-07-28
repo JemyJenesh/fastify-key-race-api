@@ -11,9 +11,10 @@ const create = async (playerId) => {
   }
 
   await playersService.update(player._id, {
+    accuracy: 0,
+    errorCount: 0,
     speed: 0,
     wordIndex: 0,
-    accuracy: 0,
   });
 
   await destoryByPlayerId(player._id);
@@ -45,14 +46,16 @@ const update = async (id, { hasStarted, isOver, player }) => {
   if (player) {
     existingPlayer = await playersService.get(player._id);
 
+    existingPlayer.accuracy = 0;
+    existingPlayer.errorCount = 0;
     existingPlayer.speed = 0;
     existingPlayer.wordIndex = 0;
-    existingPlayer.accuracy = 0;
     await existingPlayer.save();
 
+    player.accuracy = existingPlayer.accuracy;
+    player.errorCount = existingPlayer.errorCount;
     player.speed = existingPlayer.speed;
     player.wordIndex = existingPlayer.wordIndex;
-    player.accuracy = existingPlayer.accuracy;
 
     if (!existingPlayer) {
       throw "No player found";
