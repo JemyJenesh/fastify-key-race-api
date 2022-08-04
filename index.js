@@ -1,12 +1,12 @@
 import fastifyCors from "@fastify/cors";
 import Fastify from "fastify";
 import socketioServer from "fastify-socket.io";
-import gamesRoutes from "./games/routes.js";
-import gamesService from "./games/service.js";
-import playerRoutes from "./players/routes.js";
-import playersService from "./players/service.js";
-import { calculateGrossWPM } from "./utils/calculateWPM.js";
-import { connectDatabase } from "./utils/db.js";
+import gamesRoutes from "./src/games/routes.js";
+import gamesService from "./src/games/service.js";
+import playerRoutes from "./src/players/routes.js";
+import playersService from "./src/players/service.js";
+import { calculateGrossWPM } from "./src/utils/calculateWPM.js";
+import { connectDatabase } from "./src/utils/db.js";
 
 export const fastify = Fastify({
   logger: false,
