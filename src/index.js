@@ -17,7 +17,7 @@ connectDatabase();
 fastify.register(fastifyCors);
 fastify.register(socketioServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.APP_URL || "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   },
 });
