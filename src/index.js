@@ -95,7 +95,7 @@ fastify.register(playerRoutes, { prefix: "/api/players" });
 
 const start = async () => {
   try {
-    await fastify.listen({ port: 5000 });
+    fastify.listen({ port: process.env.PORT || 5000 });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
